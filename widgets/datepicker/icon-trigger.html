@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Getting Started</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<style>
+		.ui-datepicker-trigger {
+			height: 20px;
+			position: relative;
+			top: 4px;
+			left: 4px;
+		}
+
+		.ui-datepicker-trigger:hover,
+		.ui-datepicker-trigger:active {
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<p>Date: <input type="text" class="date" /></p>
+	<script>
+		$(function () {
+			$('.date').datepicker({
+				showOn: 'button',
+				buttonText: 'Select date',
+				buttonImage: 'img/calendar.svg',
+				buttonImageOnly: true
+			});
+		}());
+	</script>
+</body>
+</html>
