@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>03 - Widget Factory</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<style>
+		#element {
+			background: #f00;
+			height: 20px;
+			width: 20px;
+		}
+	</style>
+</head>
+<body>
+	<p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam repudiandae voluptas laborum, hic velit animi explicabo minus, saepe ullam molestiae. Ad ea, corrupti natus dicta. Maxime quo reiciendis iusto? Ipsam.</p>
+	<script>
+		$(function () {
+			$.fn.logger = function (options) {
+				var options = $.extend({
+					length: 100
+				}, options);
+
+				var str = this.text().substr(0, options.length).trim();
+				console.log(`${str}...`);
+			};
+
+			$('.text').logger({
+				length: 24
+			});
+		});
+	</script>
+</body>
+</html>

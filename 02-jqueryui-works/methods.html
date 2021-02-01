@@ -3,12 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>01 - Getting Started</title>
+	<title>02 - How jQuery UI works</title>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
-	
+	<div id="element"></div>
+	<script>
+		$(function () {
+			// Initialize
+			// $('#element').progressbar();
+
+			// Calling a method.
+			// $('#element').progressbar('value', 40);
+
+			// Chaining
+			$('#element').progressbar();
+			$('#element').progressbar('value', 90).addClass('almost-done');
+		}());
+	</script>
 </body>
 </html>

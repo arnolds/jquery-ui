@@ -3,12 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>01 - Getting Started</title>
+	<title>03 - Widget Factory</title>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
-	
+	<div id="element"></div>
+	<script>
+		$(function () {
+			$.widget('ns.plugin', {
+				// default options
+				options: {
+					param1: 'foo',
+					param2: 'bar',
+					param3: 'baz'
+				},
+				_create: function () {
+					console.log(this.options);
+				}
+			});
+		});
+	</script>
 </body>
 </html>

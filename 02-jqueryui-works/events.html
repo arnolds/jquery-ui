@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>02 - How jQuery UI works</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+	<div id="element"></div>
+	<script>
+		$(function () {
+			// Initialize
+			$('#element').progressbar();
+
+			// Hook 1
+			// $('#element').bind('progressbarchange', function () {
+			// 	console.log('The value has changed!');
+			// });			
+
+			// Hook 2
+			$('#element').progressbar({
+				change: function () {
+					console.log('The value has changed!');
+				}
+			});
+
+			setInterval(function () {
+				var value = Math.floor(Math.random() * 100);
+				// $('#element').progressbar('option', 'value', value);
+				$('#element').progressbar('value', value);
+			}, 1000);
+		}());
+	</script>
+</body>
+</html>
