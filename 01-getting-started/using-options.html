@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>01 - Getting Started</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+	<section>
+		<h2>Horizontal slider</h2>
+		<div class="horizontal-slider"></div>
+	</section>	
+	<section>
+		<h2>Vertical slider</h2>
+		<div class="vertical-slider"></div>
+	</section>	
+	<section>
+		<h3>Slider (with multiple options)</h3>
+		<div class="custom-slider"></div>
+	</section>
+	<script>
+		$(function () {
+			$('.horizontal-slider').slider({
+				orientation: 'horizontal'
+			});
+
+			$('.vertical-slider').slider({
+				orientation: 'vertical'
+			});
+
+			$('.custom-slider').slider({
+				min: 0,
+				max: 150,
+				value: 50
+			});
+		}());
+	</script>
+</body>
+</html>

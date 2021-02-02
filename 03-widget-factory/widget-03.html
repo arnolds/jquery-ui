@@ -8,19 +8,28 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
-<body>
-	<div id="element"></div>
+<body>	
+	<section>
+		<h2>Widget 3</h2>
+		<div class="progress-bar"></div>
+	</section>
 	<script>
-		$(function () {
-			$.widget('custom.progressbar', {
-				_create: function () {
-					var progress = this.options.value + '%';
-					this.element
-						.addClass('progressbar')
-						.text(progress);
-				}
-			});
+		$.widget('koz.progressbar', {
+			options: {
+				value: 0
+			},
+			_create: function () {
+				var progress = this.options.value + '%';
+
+				this.element
+					.addClass('progressbar')
+					.text(progress);
+			}
 		});
+
+		$('.progress-bar').progressbar();
+		$('.progress-bar').progressbar('option', 'value', 50);
+		console.log($('.progress-bar').progressbar('option', 'value'));
 	</script>
 </body>
 </html>

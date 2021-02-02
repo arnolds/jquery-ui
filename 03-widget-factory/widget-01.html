@@ -3,20 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>02 - How jQuery UI works</title>
+	<title>03 - Widget Factory</title>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
-<body>
-	<div id="element"></div>
+<body>	
+	<section>
+		<h2>Widget 1</h2>
+		<div class="progress-bar"></div>
+	</section>
 	<script>
-		$(function () {
-			// Initialize
-			// $('#element').progressbar();
+		$.widget('koz.progressbar', {
+			_create: function () {
+				var progress = this.options.value + '%';
 
-			$('#element').progressbar({value: 20});
-		}());
+				this.element
+					.addClass('progressbar')
+					.text(progress);
+			}
+		});
+
+		$('.progress-bar').progressbar();
 	</script>
 </body>
 </html>

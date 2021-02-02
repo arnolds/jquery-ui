@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>02 - How jQuery UI works</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>	
+	<section>
+		<h2>Events</h2>
+		<div class="progress-bar"></div>
+	</section>
+	<section>
+		<h2>Events continued...</h2>
+		<div class="progress-bar-alt"></div>
+	</section>
+	<script>
+		$(function() {
+			// Initialize
+			var element = $('.progress-bar');
+			element.progressbar();
+
+			// Attach event
+			// - event prefixed with widget name
+			element.bind('progressbarchange', function () {
+				console.log('value has changed!');
+			});
+
+			// Trigger event
+			var increaseProgress = setInterval(function () {
+				var value = element.progressbar('option', 'value');
+
+				if (value >= 100) {
+					clearInterval(increaseProgress);
+					element.progressbar('disable');
+				}
+
+				value += 10;
+
+				element.progressbar('option', 'value', value);
+			}, 1000);
+		}());
+
+		$(function () {
+			var element = $('.progress-bar-alt');
+			element.progressbar({
+				change: function () {
+					console.log('value has changed!');
+				}
+			})
+
+			setTimeout(function () {
+				element.progressbar('option', 'value', 30);
+			}, 3000);
+		}());
+	</script>
+</body>
+</html>

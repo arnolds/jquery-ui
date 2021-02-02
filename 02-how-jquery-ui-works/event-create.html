@@ -3,30 +3,24 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>03 - Widget Factory</title>
+	<title>02 - How jQuery UI works</title>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
-<body>
+<body>	
+	<section>
+		<h2>Event - <code>create</code></h2>
+		<div class="progress-bar"></div>
+	</section>
 	<script>
 		$(function () {
-			$.fn.plugin = function (options) {
-				options = $.extend({
-
-				}, $.fn.plugin.defaults, options);
-
-				console.log(options);
-			};
-
-			$.fn.plugin.defaults = {
-				param1: 'foo',
-				param2: 'bar',
-				param3: 'baz'
-			};
-
-			$.fn.plugin({param4: 'qux'});
-		});
+			$('.progress-bar').progressbar({
+				create: function () {
+					console.log('create method has been called.');
+				}
+			});
+		}());
 	</script>
 </body>
 </html>

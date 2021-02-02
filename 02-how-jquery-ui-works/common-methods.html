@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>02 - How jQuery UI works</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>	
+	<section>
+		<h2>Common methods</h2>
+		<div class="progress-bar"></div>
+	</section>
+	<section>
+		<h2>Common method continued...</h2>
+		<h3>Disabled</h3>
+		<div class="progress-bar-disable"></div>
+		<h3>Enabled</h3>
+		<div class="progress-bar-enable"></div>
+		<h3>Destroy</h3>
+		<div class="progress-bar-destroy"></div>
+		<h3>Widget</h3>
+		<div class="progress-bar-widget"></div>
+	</section>
+	<script>
+		$(function () {
+			// Initialize
+			var element = $('.progress-bar');
+			element.progressbar();
+
+			// Common method #1: option (set)
+			// - change options after initialization
+			// - call `option` *method*
+			element.progressbar('option', 'value', 30);
+
+			// Common method #2: option (get)
+			// - get current option value
+			// - call `option` *method*
+			console.log(
+				`current value: ${element.progressbar('option', 'value')}`
+			);
+
+			// Common method #3: option (set multiple)
+			// - set multiple options
+			// - call `option` *method*.
+			element.progressbar('option', {
+				value: 100,
+				disabled: true
+			});
+
+			console.log(
+				`value now: ${element.progressbar('option', 'value')}`
+			);
+		}());
+
+		$(function () {
+			// Initialize, set value, then disable
+			$('.progress-bar-disable').progressbar();
+			$('.progress-bar-disable').progressbar('option', 'value', 64);
+			$('.progress-bar-disable').progressbar('disable');
+
+			// Initialize, set value, disable, then enable
+			// after 5s
+			$('.progress-bar-enable').progressbar();
+			$('.progress-bar-enable').progressbar('option', {
+				value: 24,
+				disabled: true
+			});
+
+			setTimeout(function () {
+				$('.progress-bar-enable').progressbar('enable');
+				console.log('Enabled progress bar!');
+			}, 5000);
+
+			// Initialize, set value, then destroy
+			// after 5s
+			$('.progress-bar-destroy').progressbar();
+			$('.progress-bar-destroy').progressbar('option', 'value', 55);
+
+			setTimeout(function () {
+				$('.progress-bar-destroy').progressbar('destroy');
+				console.log('Destroyed progress bar.');
+			}, 5000);
+
+			// Initialize, then log wrapper after 5s
+			$('.progress-bar-widget').progressbar();
+
+			setTimeout(function () {
+				console.log($('.progress-bar').progressbar('widget'));
+			}, 5000);
+		}());
+	</script>
+</body>
+</html>

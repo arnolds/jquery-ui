@@ -3,27 +3,28 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>03 - Widget Factory</title>
+	<title>02 - How jQuery UI works</title>
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
-<body>
-	<div id="element"></div>
+<body>	
+	<section>
+		<h2>Initialize (get, and set value)</h2>
+		<div class="progress-bar"></div>
+	</section>
 	<script>
 		$(function () {
-			$.widget('ns.plugin', {
-				// default options
-				options: {
-					param1: 'foo',
-					param2: 'bar',
-					param3: 'baz'
-				},
-				_create: function () {
-					console.log(this.options);
-				}
-			});
-		});
+			var element = $('.progress-bar');
+			element.progressbar();
+
+			// before setting a value
+			console.log(`before: ${element.progressbar('value')}`);
+
+			// after setting a value
+			element.progressbar('value', 64);
+			console.log(`after: ${element.progressbar('value')}`);
+		}());
 	</script>
 </body>
 </html>

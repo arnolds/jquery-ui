@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>03 - Widget Factory</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>	
+	<section>
+		<h2>Calling plugin methods</h2>
+		<div class="progress-bar"></div>
+	</section>
+	<script>
+		$.widget('koz.progressbar', {
+			options: {
+				value: 0
+			},
+			_create: function () {
+				var progress = this.options.value + '%';
+
+				this.element
+					.addClass('progressbar')
+					.text(progress);
+			},
+			// create a public method
+			value: function (value) {
+				if (value === undefined) {
+					return this.options.value;
+				}
+
+				this.options.value = this._constrain(value);
+				var progress = this.options.value + '%';
+				this.element.text(progress);
+			},
+			_constrain: function (value) {
+				if (value > 100) {
+					value = 100;
+				}
+
+				if (value < 0) {
+					value = 0;
+				}
+
+				return value;
+			}
+		});
+
+		$('.progress-bar').progressbar();
+		$('.progress-bar').progressbar('value', 50);	
+	</script>
+</body>
+</html>

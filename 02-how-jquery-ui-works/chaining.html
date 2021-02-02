@@ -7,16 +7,26 @@
 	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<style>
+		.ui-widget.ui-widget-content.almost-done {
+			border: 1px solid #d35400;
+		}
+
+		.almost-done .ui-widget-header {
+			background: #e67e22;
+		}
+	</style>
 </head>
-<body>
-	<div id="element"></div>
+<body>	
+	<section>
+		<h2>Chaining</h2>
+		<div class="progress-bar"></div>
+	</section>
 	<script>
 		$(function () {
-			$('#element').progressbar({
-				create: function () {
-					console.log('Creating a progressbar');
-				}
-			});
+			var element = $('.progress-bar');
+			element.progressbar();
+			element.progressbar('value', 90).addClass('almost-done');
 		}());
 	</script>
 </body>
