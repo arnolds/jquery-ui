@@ -10,7 +10,7 @@
 </head>
 <body>	
 	<section>
-		<h2>Working with Options</h2>
+		<h2>Looking under the hood</h2>
 		<div class="progress-bar"></div>
 	</section>
 	<script>
@@ -27,16 +27,23 @@
 				if (key === 'value') {
 					value = this._constrain(value);
 				}
-
-				this._super(key, value);
+				// call parent method
+				this._super(key, value); 
 			},
 			_setOptions: function (options) {
-				this._super(options);
+				// call parent method
+				this._super(options); 
 				this.refresh();
 			},
 			refresh: function () {
 				var progress = this.options.value + '%';
 				this.element.text(progress);
+
+				if (this.options.value == 100) {
+					this._trigger('complete', null, {
+						value: 100
+					});
+				}
 			},
 			_constrain: function (value) {
 				if (value > 100) {
@@ -51,10 +58,14 @@
 			}
 		});
 
-		$('.progress-bar').progressbar();
-		$('.progress-bar').progressbar('option', {
-			value: 44
-		});
+		// get associated widget, replace . with -
+		var bar = $('.progress-bar').progressbar().data('koz-progressbar');
+
+		// Call a method directory on the plugin instance.
+		bar.option('value', 50);
+
+		// Access properties on the plugin instance
+		console.log(bar.options.value);
 	</script>
 </body>
 </html>

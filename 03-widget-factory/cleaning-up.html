@@ -10,7 +10,7 @@
 </head>
 <body>	
 	<section>
-		<h2>Working with Options</h2>
+		<h2>Cleaning up</h2>
 		<div class="progress-bar"></div>
 	</section>
 	<script>
@@ -37,6 +37,12 @@
 			refresh: function () {
 				var progress = this.options.value + '%';
 				this.element.text(progress);
+
+				if (this.options.value === 100) {
+					this._trigger('complete', null, {
+						value: 100
+					});
+				}
 			},
 			_constrain: function (value) {
 				if (value > 100) {
@@ -48,13 +54,29 @@
 				}
 
 				return value;
+			},
+			_destroy: function () {
+				this.element.removeClass('progressbar').text('');
 			}
 		});
 
-		$('.progress-bar').progressbar();
-		$('.progress-bar').progressbar('option', {
-			value: 44
-		});
+		var progressBar = $('.progress-bar')
+			.progressbar({
+				complete: function (event, data) {
+					console.log('complete!');
+					console.log('destroying...');
+				}
+			})
+			.data('koz-progressbar');
+
+		setTimeout(function () {
+			progressBar.option('value', 100);
+		}, 2500);
+
+		setTimeout(function () {
+			progressBar.destroy();
+			console.log('destroyed!');
+		}, 4000);
 	</script>
 </body>
 </html>

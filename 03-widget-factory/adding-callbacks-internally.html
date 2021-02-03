@@ -27,16 +27,23 @@
 				if (key === 'value') {
 					value = this._constrain(value);
 				}
-
-				this._super(key, value);
+				// call parent method
+				this._super(key, value); 
 			},
 			_setOptions: function (options) {
-				this._super(options);
+				// call parent method
+				this._super(options); 
 				this.refresh();
 			},
 			refresh: function () {
 				var progress = this.options.value + '%';
 				this.element.text(progress);
+
+				if (this.options.value == 100) {
+					this._trigger('complete', null, {
+						value: 100
+					});
+				}
 			},
 			_constrain: function (value) {
 				if (value > 100) {
@@ -51,10 +58,15 @@
 			}
 		});
 
-		$('.progress-bar').progressbar();
-		$('.progress-bar').progressbar('option', {
-			value: 44
+		$('.progress-bar').progressbar({
+			complete: function (event, data) {
+				console.log(event, data);
+			}
 		});
+
+		setTimeout(function () {
+			$('.progress-bar').progressbar('option', 'value', 2500);
+		}, 2000);
 	</script>
 </body>
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>04 - Extending Widgets with the Widget Factory</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>	
+	<section>
+		<h2>Creating widget extensions</h2>
+		<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque molestiae hic incidunt corrupti, molestias beatae assumenda, sequi ducimus, enim animi possimus, soluta doloribus. Illo eligendi, veritatis sit officiis, a sequi.</p>
+	</section>
+	<script>
+		var dialogInstance = $('section')
+			.dialog()
+			.data('ui-dialog');
+
+		dialogInstance.close = function () {
+			console.log('close');
+		};
+
+		$('<div>').dialog();
+
+		$(':data(ui-dialog)').dialog('close');
+	</script>
+</body>
+</html>
